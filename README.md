@@ -1,6 +1,7 @@
 # Balatro WebGL
 Recreation of the background shader of balatro on a website using basic WebGL and Javascript
-Support Balatro by buying it on [steam](https://store.steampowered.com/app/2379780/Balatro)
+
+> Support Balatro by buying it on [steam](https://store.steampowered.com/app/2379780/Balatro)
 ## How to use ?
 Just use the index.html file, copy the shader and the script module. You're free to change every variable from speed to colors, they're modifiable on the javascript side.
 As long as your body is using 100% of width and height, and the shader's canvas covers the entire viewport and is behind other contents `z-index=-1`, it will work very easily.

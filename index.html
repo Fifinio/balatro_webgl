@@ -49,69 +49,510 @@
             align-items: center;
             position: relative;
         }
+
+        /* Configuration Panel Styles */
+        .config-panel {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #fff;
+            border-radius: 10px;
+            padding: 20px;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            max-width: 300px;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            max-height: 85vh;
+            overflow-y: auto;
+        } 
+
+        .config-panel h3 {
+            margin: 0 0 15px 0;
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+        }
+
+        .config-group {
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .config-group:last-child {
+            border-bottom: none;
+        }
+
+        .config-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .config-group input[type="range"] {
+            width: 100%;
+            margin-bottom: 5px;
+        }
+
+        .config-group input[type="color"] {
+            width: 50px;
+            height: 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .config-group input[type="number"] {
+            width: 60px;
+            padding: 2px 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.9);
+            color: #000;
+        }
+
+        .value-display {
+            display: inline-block;
+            margin-left: 10px;
+            color: #aaa;
+            font-size: 12px;
+        }
+
+        .color-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 5px;
+        }
+ 
+        .toggle-panel {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #fff;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1001;
+            font-size: 20px;
+            color: white;
+            transition: opacity 0.5s ease-in-out;
+            opacity: 1;
+        }
+
+        .toggle-panel.faded {
+            opacity: 0.2;
+        }
+
+        .toggle-panel:hover {
+            opacity: 1 !important;
+        }
+        .config-panel.hidden {
+            display: none;
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .preset-btn {
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid #fff;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .preset-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        /* Mobile responsive styles */
+        @media only screen and (max-width: 768px) {
+            .config-panel {
+                max-width: none;
+                width: auto;
+                padding: 15px;
+                font-size: 16px;
+                max-height: 85vh;
+            }
+
+            .config-group {
+                margin-bottom: 20px;
+                padding-bottom: 15px;
+            }
+
+            .config-group label {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            .config-group input[type="range"] {
+                width: 100%;
+                height: 30px;
+                margin-bottom: 8px;
+            }
+
+            .config-group input[type="color"] {
+                width: 60px;
+                height: 40px;
+            }
+
+            .config-group input[type="number"] {
+                width: 80px;
+                height: 35px;
+                font-size: 16px;
+                padding: 5px 8px;
+            }
+
+            .value-display {
+                font-size: 14px;
+                margin-left: 15px;
+            }
+
+            .color-controls {
+                gap: 15px;
+                margin-bottom: 8px;
+            }
+
+            .color-controls span {
+                font-size: 16px;
+            }
+
+            .preset-buttons {
+                gap: 8px;
+                margin-top: 15px;
+                flex-wrap: wrap;
+            }
+
+            .preset-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+                min-width: 80px;
+                text-align: center;
+            }
+
+            .toggle-panel {
+                top: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
+
+        /* Extra small mobile devices */
+        @media only screen and (max-width: 480px) {
+            .config-panel {
+                padding: 12px;
+                font-size: 15px;
+                max-height: 90vh;
+            }
+
+            .config-group {
+                margin-bottom: 18px;
+                padding-bottom: 12px;
+            }
+
+            .config-group label {
+                font-size: 15px;
+            }
+
+            .config-group input[type="range"] {
+                height: 35px;
+            }
+
+            .config-group input[type="color"] {
+                width: 50px;
+                height: 35px;
+            }
+
+            .config-group input[type="number"] {
+                width: 70px;
+                height: 32px;
+                font-size: 15px;
+            }
+
+            .preset-buttons {
+                gap: 6px;
+            }
+
+            .preset-btn {
+                padding: 6px 12px;
+                font-size: 13px;
+                min-width: 70px;
+            }
+
+            .toggle-panel {
+                width: 55px;
+                height: 55px;
+                font-size: 22px;
+            }
+        }
+
+        /* Landscape orientation on mobile */
+        @media only screen and (max-width: 768px) and (orientation: landscape) {
+            .config-panel {
+                max-height: 75vh;
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .config-group {
+                margin-bottom: 12px;
+                padding-bottom: 8px;
+            }
+
+            .config-group label {
+                font-size: 14px;
+                margin-bottom: 4px;
+            }
+
+            .config-group input[type="range"] {
+                height: 25px;
+                margin-bottom: 4px;
+            }
+
+            .preset-buttons {
+                margin-top: 10px;
+            }
+
+            .preset-btn {
+                padding: 6px 10px;
+                font-size: 12px;
+                min-width: 60px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <main>
-        <div class="centered">
-            <div class="logo">
-                <span id="kestia">QWKUNS</span>
+    <canvas id="glcanvas"></canvas>
+
+    <!-- Configuration Panel -->
+    <div class="toggle-panel" id="togglePanel">⚙️</div>
+    <div class="config-panel" id="configPanel">
+        <h3>Shader Controls</h3>
+
+        <div class="config-group">
+            <label>Contrast: <span class="value-display" id="contrastValue">1.2</span></label>
+            <input type="range" id="contrast" min="0.1" max="3.0" step="0.1" value="1.2">
+        </div>
+
+        <div class="config-group">
+            <label>Loop Iterations: <span class="value-display" id="loopIterationsValue">3</span></label>
+            <input type="range" id="loopIterations" min="1" max="20" step="1" value="3">
+        </div>
+
+        <div class="config-group">
+            <label>Pixel Size Factor: <span class="value-display" id="pixelSizeValue">700</span></label>
+            <input type="range" id="pixelSize" min="100" max="2000" step="50" value="700">
+        </div>
+
+        <div class="config-group">
+            <label>Spin Ease: <span class="value-display" id="spinEaseValue">0.5</span></label>
+            <input type="range" id="spinEase" min="0.1" max="2.0" step="0.1" value="0.5">
+        </div>
+
+        <div class="config-group">
+            <label>Color 2:</label>
+            <div class="color-controls">
+                <input type="color" id="color2" value="#ffffff">
+                <span>White</span>
             </div>
         </div>
-    </main>
 
-    <canvas id="glcanvas"></canvas>
+        <div class="config-group">
+            <label>Color 3:</label>
+            <div class="color-controls">
+                <input type="color" id="color3" value="#000000">
+                <span>Black</span>
+            </div>
+        </div>
+
+        <div class="config-group">
+            <label>CRT Scanline Intensity: <span class="value-display" id="scanlineValue">0.05</span></label>
+            <input type="range" id="scanlineIntensity" min="0.0" max="0.2" step="0.01" value="0.05">
+        </div>
+
+        <div class="config-group">
+            <label>Vignette Strength: <span class="value-display" id="vignetteValue">0.8</span></label>
+            <input type="range" id="vignetteStrength" min="0.0" max="2.0" step="0.1" value="0.8">
+        </div>
+
+        <div class="config-group">
+            <label>Noise Intensity: <span class="value-display" id="noiseValue">0.05</span></label>
+            <input type="range" id="noiseIntensity" min="0.0" max="0.2" step="0.01" value="0.05">
+        </div>
+
+        <div class="config-group">
+            <label>Chromatic Aberration: <span class="value-display" id="chromaticValue">0.3</span></label>
+            <input type="range" id="chromaticAberration" min="0.0" max="1.0" step="0.1" value="0.3">
+        </div>
+
+        <div class="preset-buttons">
+            <button class="preset-btn" onclick="loadPreset('default')">Default</button>
+            <button class="preset-btn" onclick="loadPreset('intense')">Intense</button>
+            <button class="preset-btn" onclick="loadPreset('subtle')">Subtle</button>
+            <button class="preset-btn" onclick="loadPreset('retro')">Retro</button>
+        </div>
+    </div>
     <script id="fragShader" type="x-shader/x-fragment">
-  precision highp float;
-
-  uniform float time;
-  uniform float spin_time;
-  uniform float contrast;
-  uniform float spin_amount;
-  uniform vec2 resolution;
-  uniform vec4 colour_1;
-  uniform vec4 colour_2;
-  uniform vec4 colour_3;
-
-  #define PIXEL_SIZE_FAC 700.0
-  #define SPIN_EASE 0.5
-
-  void main() {
-    vec2 screen_coords = gl_FragCoord.xy;
-    float pixel_size = length(resolution.xy) / PIXEL_SIZE_FAC;
-    vec2 uv = (floor(screen_coords.xy / pixel_size) * pixel_size - 0.5 * resolution.xy) / length(resolution.xy) - vec2(0.12, 0.0);
-    float uv_len = length(uv);
-
-    float speed = (spin_time * SPIN_EASE * 0.2) + 302.2;
-    float new_pixel_angle = atan(uv.y, uv.x) + speed - SPIN_EASE * 20.0 * (1.0 * spin_amount * uv_len + (1.0 - 1.0 * spin_amount));
-    vec2 mid = (resolution.xy / length(resolution.xy)) / 2.0;
-    uv = vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid;
-
-    uv *= 30.0;
-    speed = time * 2.0;
-    vec2 uv2 = vec2(uv.x + uv.y);
-
-    for (int i = 0; i < 5; i++) {
-      uv2 += sin(max(uv.x, uv.y)) + uv;
-      uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
-      uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
-    }
-
-    float contrast_mod = (0.25 * contrast + 0.5 * spin_amount + 1.2);
-    float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
-    float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
-    float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
-    float c3p = 1.0 - min(1.0, c1p + c2p);
-
-    vec4 ret_col = (0.3 / contrast) * colour_1 + (1.0 - 0.3 / contrast) * (colour_1 * c1p + colour_2 * c2p + vec4(c3p * colour_3.rgb, c3p * colour_1.a));
-    gl_FragColor = ret_col;
-  }
-  </script>
+        precision highp float;
+      
+        uniform float time;
+        uniform float spin_time;
+        uniform float contrast;
+        uniform float spin_amount;
+        uniform vec2 resolution;
+        uniform vec4 colour_1;
+        uniform vec4 colour_2;
+        uniform vec4 colour_3;
+        uniform float scanline_intensity;
+        uniform float vignette_strength;
+        uniform float noise_intensity;
+        uniform float chromatic_aberration;
+        uniform float pixel_size_factor;
+        uniform float spin_ease;
+        uniform int loop_iterations;
+      
+        // CRT effects with configurable parameters
+        float scanline(vec2 uv, float time) {
+          return sin(uv.y * resolution.y * 1.5 + time * 2.0) * scanline_intensity + (1.0 - scanline_intensity);
+        }
+      
+        float vignette(vec2 uv) {
+          float dist = length(uv - 0.5);
+          return 1.0 - dist * vignette_strength;
+        }
+      
+        float crtCurve(vec2 uv) {
+          vec2 curve = uv - 0.5;
+          curve *= curve * 2.0;
+          return 1.0 - curve.x - curve.y;
+        }
+      
+        float noise(vec2 uv) {
+          return fract(sin(dot(uv, vec2(12.9898, 78.233))) * 43758.5453);
+        }
+      
+        void main() {
+          vec2 screen_coords = gl_FragCoord.xy;
+          float pixel_size = length(resolution.xy) / pixel_size_factor;
+          vec2 uv = (floor(screen_coords.xy / pixel_size) * pixel_size - 0.5 * resolution.xy) / length(resolution.xy) - vec2(0.12, 0.0);
+          float uv_len = length(uv);
+      
+          float speed = (spin_time * spin_ease * 0.2) + 302.2;
+          float spin_factor = spin_ease * 20.0 * (1.0 * spin_amount * uv_len + (1.0 - 1.0 * spin_amount));
+          float new_pixel_angle = atan(uv.y, uv.x) + speed - spin_factor;
+          vec2 mid = (resolution.xy / length(resolution.xy)) / 2.0;
+          uv = vec2(uv_len * cos(new_pixel_angle) + mid.x, uv_len * sin(new_pixel_angle) + mid.y) - mid;
+      
+          uv *= 30.0;
+          speed = time * 2.0;
+          vec2 uv2 = vec2(uv.x + uv.y);
+      
+          // Dynamic loop with uniform
+          for (int i = 0; i < 8; i++) {
+            if (i >= loop_iterations) break;
+            uv2 += sin(max(uv.x, uv.y)) + uv;
+            uv += 0.5 * vec2(cos(5.1123314 + 0.353 * uv2.y + speed * 0.131121), sin(uv2.x - 0.113 * speed));
+            uv -= 1.0 * cos(uv.x + uv.y) - 1.0 * sin(uv.x * 0.711 - uv.y);
+          }
+      
+          float contrast_mod = (0.25 * contrast + 0.5 * spin_amount + 1.2);
+          float paint_res = min(2.0, max(0.0, length(uv) * 0.035 * contrast_mod));
+          float c1p = max(0.0, 1.0 - contrast_mod * abs(1.0 - paint_res));
+          float c2p = max(0.0, 1.0 - contrast_mod * abs(paint_res));
+          float c3p = 1.0 - min(1.0, c1p + c2p);
+      
+          vec4 ret_col = (0.3 / contrast) * colour_1 + (1.0 - 0.3 / contrast) * (colour_1 * c1p + colour_2 * c2p + vec4(c3p * colour_3.rgb, c3p * colour_1.a));
+          
+          vec2 screen_uv = gl_FragCoord.xy / resolution.xy;
+          
+          float combined_effect = scanline(screen_uv, time) * vignette(screen_uv) * crtCurve(screen_uv);
+          ret_col.rgb *= combined_effect;
+          
+          float noise_val = noise(screen_uv + time * 0.1);
+          ret_col.rgb += (noise_val - 0.5) * noise_intensity;
+          
+          vec2 shift = vec2(0.002, 0.0);
+          ret_col.r = mix(ret_col.r, ret_col.r * noise(screen_uv + shift), chromatic_aberration);
+          ret_col.b = mix(ret_col.b, ret_col.b * noise(screen_uv - shift), chromatic_aberration);
+          
+          gl_FragColor = ret_col;
+        }
+        </script>
 
     <script type="module">
+        // Configuration state
+        let config = {
+            contrast: 1.2,
+            spinAmount: 0.5,
+            loopIterations: 3,
+            pixelSize: 700,
+            spinEase: 0.5,
+            color1: [1.0, 0.0, 0.0],
+            color2: [1.0, 1.0, 1.0],
+            color3: [0.0, 0.0, 0.0],
+            scanlineIntensity: 0.05,
+            vignetteStrength: 0.8,
+            noiseIntensity: 0.05,
+            chromaticAberration: 0.3
+        };
+        let mouseTimeout;
+        let lastMouseMove = Date.now();
+        const FADE_DELAY = 2000; // 2 seconds
+
+        function resetMouseTimer() {
+            lastMouseMove = Date.now();
+            clearTimeout(mouseTimeout);
+            
+            const togglePanel = document.getElementById('togglePanel');
+            if (togglePanel) {
+                togglePanel.classList.remove('faded');
+            }
+            
+            // Set new timeout
+            mouseTimeout = setTimeout(() => {
+                const configPanel = document.getElementById('configPanel');
+                if (configPanel && configPanel.classList.contains('hidden')) {
+                    const togglePanel = document.getElementById('togglePanel');
+                    if (togglePanel) {
+                        togglePanel.classList.add('faded');
+                    }
+                }
+            }, FADE_DELAY);
+        }
+        let program, uniforms;
+
+        // Cache DOM elements
         const canvas = document.getElementById("glcanvas");
-        const gl = canvas.getContext("webgl");
+        const gl = canvas.getContext("webgl", {
+            antialias: false,
+            powerPreference: "high-performance"
+        });
+
+        if (!gl) {
+            console.error("WebGL not supported");
+        }
+
+        const vertexData = new Float32Array([
+            -1, -1, 1, -1, -1, 1,
+            -1, 1, 1, -1, 1, 1
+        ]);
 
         function resizeCanvas() {
             canvas.width = window.innerWidth;
@@ -121,13 +562,12 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        const fragShaderSource = document.getElementById("fragShader").textContent;
         const vertShaderSource = `
-      attribute vec4 a_position;
-      void main() {
-        gl_Position = a_position;
-      }
-    `;
+            attribute vec4 a_position;
+            void main() {
+              gl_Position = a_position;
+            }
+          `;
 
         function compileShader(type, source) {
             const shader = gl.createShader(type);
@@ -141,68 +581,318 @@
             return shader;
         }
 
-        const vertShader = compileShader(gl.VERTEX_SHADER, vertShaderSource);
-        const fragShader = compileShader(gl.FRAGMENT_SHADER, fragShaderSource);
+        function createShaderProgram() {
+            const vertShader = compileShader(gl.VERTEX_SHADER, vertShaderSource);
+            const fragShader = compileShader(gl.FRAGMENT_SHADER, document.getElementById("fragShader").textContent);
 
-        const program = gl.createProgram();
-        gl.attachShader(program, vertShader);
-        gl.attachShader(program, fragShader);
-        gl.linkProgram(program);
-        gl.useProgram(program);
-
-        const positionLoc = gl.getAttribLocation(program, "a_position");
-        const buffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-            -1, -1, 1, -1, -1, 1,
-            -1, 1, 1, -1, 1, 1
-        ]), gl.STATIC_DRAW);
-        gl.enableVertexAttribArray(positionLoc);
-        gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-
-        const uniforms = {
-            time: gl.getUniformLocation(program, "time"),
-            spin_time: gl.getUniformLocation(program, "spin_time"),
-            contrast: gl.getUniformLocation(program, "contrast"),
-            spin_amount: gl.getUniformLocation(program, "spin_amount"),
-            resolution: gl.getUniformLocation(program, "resolution"),
-            colour_1: gl.getUniformLocation(program, "colour_1"),
-            colour_2: gl.getUniformLocation(program, "colour_2"),
-            colour_3: gl.getUniformLocation(program, "colour_3")
-        };
-
-        function hexToRgbNormalized(hex) {
-            hex = hex.replace(/^#/, '');
-            if (hex.length === 3) {
-                hex = hex.split('').map(c => c + c).join('');
+            if (!vertShader || !fragShader) {
+                console.error("Shader compilation failed");
+                return null;
             }
-            const bigint = parseInt(hex, 16);
-            const r = ((bigint >> 16) & 255) / 255;
-            const g = ((bigint >> 8) & 255) / 255;
-            const b = (bigint & 255) / 255;
-            return [r, g, b];
+
+            const newProgram = gl.createProgram();
+            gl.attachShader(newProgram, vertShader);
+            gl.attachShader(newProgram, fragShader);
+            gl.linkProgram(newProgram);
+
+            if (!gl.getProgramParameter(newProgram, gl.LINK_STATUS)) {
+                console.error(gl.getProgramInfoLog(newProgram));
+                return null;
+            }
+
+            return newProgram;
         }
 
-        const [r1, g1, b1] = hexToRgbNormalized('#FF1919');
-        const [r2, g2, b2] = hexToRgbNormalized('#ffffff');
-        const [r3, g3, b3] = hexToRgbNormalized('#000');
+        function setupShader() {
+            program = createShaderProgram();
+            if (!program) return;
+
+            gl.useProgram(program);
+
+            const positionLoc = gl.getAttribLocation(program, "a_position");
+            const buffer = gl.createBuffer();
+            gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+            gl.bufferData(gl.ARRAY_BUFFER, vertexData, gl.STATIC_DRAW);
+            gl.enableVertexAttribArray(positionLoc);
+            gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+            uniforms = {
+                time: gl.getUniformLocation(program, "time"),
+                spin_time: gl.getUniformLocation(program, "spin_time"),
+                contrast: gl.getUniformLocation(program, "contrast"),
+                spin_amount: gl.getUniformLocation(program, "spin_amount"),
+                resolution: gl.getUniformLocation(program, "resolution"),
+                colour_1: gl.getUniformLocation(program, "colour_1"),
+                colour_2: gl.getUniformLocation(program, "colour_2"),
+                colour_3: gl.getUniformLocation(program, "colour_3"),
+                scanline_intensity: gl.getUniformLocation(program, "scanline_intensity"),
+                vignette_strength: gl.getUniformLocation(program, "vignette_strength"),
+                noise_intensity: gl.getUniformLocation(program, "noise_intensity"),
+                chromatic_aberration: gl.getUniformLocation(program, "chromatic_aberration"),
+                pixel_size_factor: gl.getUniformLocation(program, "pixel_size_factor"),
+                spin_ease: gl.getUniformLocation(program, "spin_ease"),
+                loop_iterations: gl.getUniformLocation(program, "loop_iterations")
+            };
+        }
+
+        // Color conversion utilities
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? [
+                parseInt(result[1], 16) / 255,
+                parseInt(result[2], 16) / 255,
+                parseInt(result[3], 16) / 255
+            ] : [0, 0, 0];
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (Math.round(r * 255) << 16) + (Math.round(g * 255) << 8) + Math.round(b * 255)).toString(16).slice(1);
+        }
+
+        // Dynamic color generation
+        let lastColorTime = -1;
+        let cachedColor = [0.5, 0.5, 0.5];
+
+        function getDynamicColor(time) {
+            if (Math.abs(time - lastColorTime) > 0.016) {
+                const r = 0.5 + 0.5 * Math.sin(time * 0.5);
+                const g = 0.5 + 0.5 * Math.sin(time * 0.5 + 2.094);
+                const b = 0.5 + 0.5 * Math.sin(time * 0.5 + 4.189);
+                cachedColor = [r, g, b];
+                lastColorTime = time;
+            }
+            return cachedColor;
+        }
+        function setupConfigPanel() {
+            const togglePanel = document.getElementById('togglePanel');
+            const configPanel = document.getElementById('configPanel');
+            
+            togglePanel.addEventListener('click', () => {
+                configPanel.classList.toggle('hidden');
+                
+                // Reset mouse timer when panel is opened
+                if (!configPanel.classList.contains('hidden')) {
+                    resetMouseTimer();
+                } else {
+                    // When closing, start the fade timer
+                    mouseTimeout = setTimeout(() => {
+                        if (configPanel.classList.contains('hidden')) {
+                            togglePanel.classList.add('faded');
+                        }
+                    }, FADE_DELAY);
+                }
+            });
+
+            // Mouse move event listener
+            document.addEventListener('mousemove', resetMouseTimer);
+
+            // Setup all input listeners
+            const inputs = {
+                'contrast': (value) => { config.contrast = parseFloat(value); updateValueDisplay('contrastValue', value); },
+                'spinAmount': (value) => { config.spinAmount = parseFloat(value); updateValueDisplay('spinAmountValue', value); },
+                'loopIterations': (value) => { 
+                    config.loopIterations = parseInt(value); 
+                    updateValueDisplay('loopIterationsValue', value);
+                    setupShader();
+                },
+                'pixelSize': (value) => { 
+                    config.pixelSize = parseInt(value); 
+                    updateValueDisplay('pixelSizeValue', value);
+                },
+                'spinEase': (value) => { config.spinEase = parseFloat(value); updateValueDisplay('spinEaseValue', value); },
+                'color2': (value) => { config.color2 = hexToRgb(value); },
+                'color3': (value) => { config.color3 = hexToRgb(value); },
+                'scanlineIntensity': (value) => { config.scanlineIntensity = parseFloat(value); updateValueDisplay('scanlineValue', value); },
+                'vignetteStrength': (value) => { config.vignetteStrength = parseFloat(value); updateValueDisplay('vignetteValue', value); },
+                'noiseIntensity': (value) => { config.noiseIntensity = parseFloat(value); updateValueDisplay('noiseValue', value); },
+                'chromaticAberration': (value) => { config.chromaticAberration = parseFloat(value); updateValueDisplay('chromaticValue', value); }
+            };
+
+            Object.keys(inputs).forEach(id => {
+                const element = document.getElementById(id);
+                if (element) {
+                    element.addEventListener('input', (e) => inputs[id](e.target.value));
+                }
+            });
+
+            // Start the initial mouse timer
+            resetMouseTimer();
+        } 
+
+        function updateValueDisplay(elementId, value) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = value;
+            }
+        }
+
+        // Preset configurations
+        window.loadPreset = function (presetName) {
+            const presets = {
+                default: {
+                    contrast: 1.2,
+                    spinAmount: 0.5,
+                    loopIterations: 3,
+                    pixelSize: 700,
+                    spinEase: 0.5,
+                    scanlineIntensity: 0.05,
+                    vignetteStrength: 0.8,
+                    noiseIntensity: 0.05,
+                    chromaticAberration: 0.3,
+                    color2: [1.0, 1.0, 1.0],
+                    color3: [0.0, 0.0, 0.0]
+                },
+                intense: {
+                    contrast: 2.5,
+                    spinAmount: 0.8,
+                    loopIterations: 6,
+                    pixelSize: 500,
+                    spinEase: 1.2,
+                    scanlineIntensity: 0.15,
+                    vignetteStrength: 1.5,
+                    noiseIntensity: 0.15,
+                    chromaticAberration: 0.8,
+                    color2: [1.0, 1.0, 1.0],
+                    color3: [0.0, 0.0, 0.0]
+                },
+                subtle: {
+                    contrast: 0.8,
+                    spinAmount: 0.2,
+                    loopIterations: 2,
+                    pixelSize: 900,
+                    spinEase: 0.3,
+                    scanlineIntensity: 0.02,
+                    vignetteStrength: 0.4,
+                    noiseIntensity: 0.02,
+                    chromaticAberration: 0.1,
+                    color2: [1.0, 1.0, 1.0],
+                    color3: [0.0, 0.0, 0.0]
+                },
+                retro: {
+                    contrast: 1.5,
+                    spinAmount: 0.6,
+                    loopIterations: 4,
+                    pixelSize: 600,
+                    spinEase: 0.8,
+                    scanlineIntensity: 0.1,
+                    vignetteStrength: 1.2,
+                    noiseIntensity: 0.08,
+                    chromaticAberration: 0.5,
+                    color2: [1.0, 1.0, 1.0],
+                    color3: [0.0, 0.0, 0.0]
+                }
+            };
+
+            const preset = presets[presetName];
+            if (preset) {
+                // Update config object
+                Object.keys(preset).forEach(key => {
+                    config[key] = preset[key];
+                });
+
+                // Update DOM elements with correct ID mapping
+                const elementMappings = {
+                    contrast: 'contrast',
+                    spinAmount: 'spinAmount',
+                    loopIterations: 'loopIterations',
+                    pixelSize: 'pixelSize',
+                    spinEase: 'spinEase',
+                    scanlineIntensity: 'scanlineIntensity',
+                    vignetteStrength: 'vignetteStrength',
+                    noiseIntensity: 'noiseIntensity',
+                    chromaticAberration: 'chromaticAberration'
+                };
+
+                // Update sliders and value displays
+                Object.keys(elementMappings).forEach(key => {
+                    const elementId = elementMappings[key];
+                    const element = document.getElementById(elementId);
+                    const valueDisplayId = elementId + 'Value';
+                    const valueDisplay = document.getElementById(valueDisplayId);
+
+                    if (element && preset[key] !== undefined) {
+                        element.value = preset[key];
+                        if (valueDisplay) {
+                            valueDisplay.textContent = preset[key];
+                        }
+                    }
+                });
+
+                // Update color inputs
+                if (preset.color2) {
+                    const color2Element = document.getElementById('color2');
+                    if (color2Element) {
+                        color2Element.value = rgbToHex(preset.color2[0], preset.color2[1], preset.color2[2]);
+                    }
+                }
+
+                if (preset.color3) {
+                    const color3Element = document.getElementById('color3');
+                    if (color3Element) {
+                        color3Element.value = rgbToHex(preset.color3[0], preset.color3[1], preset.color3[2]);
+                    }
+                }
+
+                // Recompile shader if loop iterations changed
+                setupShader();
+
+                // Add visual feedback for selected preset
+                const presetButtons = document.querySelectorAll('.preset-btn');
+                presetButtons.forEach(btn => {
+                    btn.style.background = 'rgba(255, 255, 255, 0.2)';
+                    btn.style.border = '1px solid #fff';
+                });
+
+                // Highlight the selected preset button
+                const selectedButton = document.querySelector(`[onclick="loadPreset('${presetName}')"]`);
+                if (selectedButton) {
+                    selectedButton.style.background = 'rgba(255, 255, 255, 0.4)';
+                    selectedButton.style.border = '2px solid #fff';
+                }
+            }
+        };
+
+        // Performance monitoring
+        let frameCount = 0;
+        let lastTime = 0;
+        let fps = 0;
 
         function render(timeMs) {
-            const t = timeMs * 0.001    ;
+            const t = timeMs * 0.001;
+
+            frameCount++;
+            if (timeMs - lastTime >= 1000) {
+                fps = frameCount;
+                frameCount = 0;
+                lastTime = timeMs;
+                console.log(`FPS: ${fps}`);
+            }
+
+            const [r1, g1, b1] = getDynamicColor(t);
+
             gl.uniform1f(uniforms.time, t);
             gl.uniform1f(uniforms.spin_time, t);
-            gl.uniform1f(uniforms.contrast, 1.2);
-            gl.uniform1f(uniforms.spin_amount, 0.5);
+            gl.uniform1f(uniforms.contrast, config.contrast);
+            gl.uniform1f(uniforms.spin_amount, config.spinAmount);
             gl.uniform2f(uniforms.resolution, canvas.width, canvas.height);
-
             gl.uniform4f(uniforms.colour_1, r1, g1, b1, 1.0);
-            gl.uniform4f(uniforms.colour_2, r2, g2, b2, 1.0);
-            gl.uniform4f(uniforms.colour_3, r3, g3, b3, 1.0);
+            gl.uniform4f(uniforms.colour_2, config.color2[0], config.color2[1], config.color2[2], 1.0);
+            gl.uniform4f(uniforms.colour_3, config.color3[0], config.color3[1], config.color3[2], 1.0);
+            gl.uniform1f(uniforms.scanline_intensity, config.scanlineIntensity);
+            gl.uniform1f(uniforms.vignette_strength, config.vignetteStrength);
+            gl.uniform1f(uniforms.noise_intensity, config.noiseIntensity);
+            gl.uniform1f(uniforms.chromatic_aberration, config.chromaticAberration);
+            gl.uniform1f(uniforms.pixel_size_factor, config.pixelSize);
+            gl.uniform1f(uniforms.spin_ease, config.spinEase);
+            gl.uniform1i(uniforms.loop_iterations, config.loopIterations);
 
             gl.drawArrays(gl.TRIANGLES, 0, 6);
             requestAnimationFrame(render);
         }
 
+        // Initialize
+        setupShader();
+        setupConfigPanel();
         requestAnimationFrame(render);
     </script>
 </body>
