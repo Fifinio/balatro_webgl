@@ -367,6 +367,16 @@
         </div>
 
         <div class="config-group">
+            <label>Spin Center X: <span class="value-display" id="spinCenterXValue">0.12</span></label>
+            <input type="range" id="spinCenterX" min="-0.5" max="0.5" step="0.01" value="0.12">
+        </div>
+
+        <div class="config-group">
+            <label>Spin Center Y: <span class="value-display" id="spinCenterYValue">0.0</span></label>
+            <input type="range" id="spinCenterY" min="-0.5" max="0.5" step="0.01" value="0.0">
+        </div>
+
+        <div class="config-group">
             <label>Color 2:</label>
             <div class="color-controls">
                 <input type="color" id="color2" value="#ffffff">
@@ -427,6 +437,7 @@
         uniform float pixel_size_factor;
         uniform float spin_ease;
         uniform int loop_iterations;
+        uniform vec2 spin_center;
       
         // CRT effects with configurable parameters
         float scanline(vec2 uv, float time) {
@@ -451,7 +462,7 @@
         void main() {
           vec2 screen_coords = gl_FragCoord.xy;
           float pixel_size = length(resolution.xy) / pixel_size_factor;
-          vec2 uv = (floor(screen_coords.xy / pixel_size) * pixel_size - 0.5 * resolution.xy) / length(resolution.xy) - vec2(0.12, 0.0);
+          vec2 uv = (floor(screen_coords.xy / pixel_size) * pixel_size - 0.5 * resolution.xy) / length(resolution.xy) - spin_center;
           float uv_len = length(uv);
       
           float speed = (spin_time * spin_ease * 0.2) + 302.2;
@@ -495,7 +506,6 @@
           gl_FragColor = ret_col;
         }
         </script>
-
     <script type="module">
         // Configuration state
         let config = {
@@ -504,6 +514,8 @@
             loopIterations: 3,
             pixelSize: 700,
             spinEase: 0.5,
+            spinCenterX: 0.12,
+            spinCenterY: 0.0,
             color1: [1.0, 0.0, 0.0],
             color2: [1.0, 1.0, 1.0],
             color3: [0.0, 0.0, 0.0],
@@ -631,7 +643,8 @@
                 chromatic_aberration: gl.getUniformLocation(program, "chromatic_aberration"),
                 pixel_size_factor: gl.getUniformLocation(program, "pixel_size_factor"),
                 spin_ease: gl.getUniformLocation(program, "spin_ease"),
-                loop_iterations: gl.getUniformLocation(program, "loop_iterations")
+                loop_iterations: gl.getUniformLocation(program, "loop_iterations"),
+                spin_center: gl.getUniformLocation(program, "spin_center")
             };
         }
 
@@ -663,6 +676,8 @@
             }
             return cachedColor;
         }
+
+        // Configuration panel setup
         function setupConfigPanel() {
             const togglePanel = document.getElementById('togglePanel');
             const configPanel = document.getElementById('configPanel');
@@ -700,6 +715,8 @@
                     updateValueDisplay('pixelSizeValue', value);
                 },
                 'spinEase': (value) => { config.spinEase = parseFloat(value); updateValueDisplay('spinEaseValue', value); },
+                'spinCenterX': (value) => { config.spinCenterX = parseFloat(value); updateValueDisplay('spinCenterXValue', value); },
+                'spinCenterY': (value) => { config.spinCenterY = parseFloat(value); updateValueDisplay('spinCenterYValue', value); },
                 'color2': (value) => { config.color2 = hexToRgb(value); },
                 'color3': (value) => { config.color3 = hexToRgb(value); },
                 'scanlineIntensity': (value) => { config.scanlineIntensity = parseFloat(value); updateValueDisplay('scanlineValue', value); },
@@ -717,7 +734,7 @@
 
             // Start the initial mouse timer
             resetMouseTimer();
-        } 
+        }
 
         function updateValueDisplay(elementId, value) {
             const element = document.getElementById(elementId);
@@ -856,10 +873,9 @@
         let frameCount = 0;
         let lastTime = 0;
         let fps = 0;
-
         function render(timeMs) {
             const t = timeMs * 0.001;
-
+            
             frameCount++;
             if (timeMs - lastTime >= 1000) {
                 fps = frameCount;
@@ -867,7 +883,7 @@
                 lastTime = timeMs;
                 console.log(`FPS: ${fps}`);
             }
-
+            
             const [r1, g1, b1] = getDynamicColor(t);
 
             gl.uniform1f(uniforms.time, t);
@@ -885,6 +901,7 @@
             gl.uniform1f(uniforms.pixel_size_factor, config.pixelSize);
             gl.uniform1f(uniforms.spin_ease, config.spinEase);
             gl.uniform1i(uniforms.loop_iterations, config.loopIterations);
+            gl.uniform2f(uniforms.spin_center, config.spinCenterX, config.spinCenterY);
 
             gl.drawArrays(gl.TRIANGLES, 0, 6);
             requestAnimationFrame(render);
@@ -896,5 +913,4 @@
         requestAnimationFrame(render);
     </script>
 </body>
-
 </html>
